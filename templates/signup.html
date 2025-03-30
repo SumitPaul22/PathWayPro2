@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Started - Student Information</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">Path<span>Way</span>Pro.com</div>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="{{ url_for('chat') }}"><button class="cta-button">Ask CareerBot</button></a>
+        </nav>
+        <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+    </header>
+
+    <section class="student-info">
+        <h2>Student Information</h2>
+        <form method="POST" action="{{ url_for('signup') }}">
+            <h3>Basic Info</h3>
+            <div class="form-group">
+                <input type="text" name="full_name" placeholder="Full Name *" required>
+                <input type="email" name="email" placeholder="Email ID *" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="state" placeholder="State *" required>
+                <input type="tel" name="mobile" placeholder="Mobile No *" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="boards_percentage" placeholder="Boards Percentage *" required>
+                <input type="text" name="city" placeholder="City / District *" required>
+            </div>
+            <div class="form-group">
+                <input type="date" name="dob" required>
+                <select name="disability" required>
+                    <option value="">Disability *</option>
+                    <option value="None">None</option>
+                    <option value="Vision Impairment">Vision Impairment</option>
+                    <option value="Hearing Impairment">Hearing Impairment</option>
+                </select>
+            </div>
+            <div class="terms">
+                <input type="checkbox" name="terms" required> Accept <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>.
+            </div>
+            <button type="submit" class="submit-btn">Submit »</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2025 PathWayPro. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        }
+
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
+</body>
+</html>

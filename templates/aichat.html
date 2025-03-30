@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Mentor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='aistyle.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <h2>Profile</h2>
+            <a href="{{ url_for('index') }}">
+                <button class="cta-button">Home</button>
+            </a>
+            <p><strong>Name:</strong> {{ user_profile.name }}</p>
+            <p><strong>Goal:</strong> {{ user_profile.goal or "Not set" }}</p>
+            <p class="stat"><strong>Messages Sent:</strong> {{ user_profile.messages_sent }}</p>
+        </div>
+        <div class="main-content">
+            <div class="header">
+                <button class="sidebar-btn" onclick="toggleSidebar()">☰ Profile</button>
+                AI Career Mentor
+                <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+            </div>
+            <div class="chat-box" id="chat-box">
+                {% for message in chat_history %}
+                <div class="message {{ message.sender }}">
+                    <div>
+                        {% if message.sender == "ai" %}
+                            {{ message.text | safe }}  <!-- Render AI response as HTML -->
+                        {% else %}
+                            {{ message.text }}  <!-- Render user input as plain text -->
+                        {% endif %}
+                        <span class="timestamp">{{ message.time }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="message ai typing" id="typing-indicator" style="display: none;">Typing...</div>
+            </div>
+            <form method="POST" class="input-area" id="chat-form">
+                <input type="text" name="message" placeholder="Enter your query" autocomplete="off">
+                <button type="submit">Send</button>
+                <button type="submit" name="message" value="Show me resume tips" class="feature-btn">Resume Tips</button>
+                <button type="submit" name="message" value="Show me my career roadmap" class="feature-btn">Roadmap</button>
+                <button type="submit" name="clear" value="clear" class="clear-btn">Clear</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        let chatBox = document.getElementById("chat-box");
+        let typingIndicator = document.getElementById("typing-indicator");
+        let form = document.getElementById("chat-form");
+        let sidebar = document.getElementById("sidebar");
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        form.addEventListener("submit", function(e) {
+            if (!e.submitter.classList.contains("clear-btn")) {
+                typingIndicator.style.display = "block";
+                chatBox.scrollTop = chatBox.scrollHeight;
+                setTimeout(() => {
+                    typingIndicator.style.display = "none";
+                }, 600);
+            }
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        }
+
+        function toggleSidebar() {
+            sidebar.classList.toggle("open");
+        }
+
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
+</body>
+</html>

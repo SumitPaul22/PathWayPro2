@@ -1,0 +1,262 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+body {
+    background: #f7f8fa; /* Light gray background for a clean look */
+    color: #2d3748; /* Dark gray text for readability */
+    height: 100vh;
+    display: flex;
+    transition: background 0.3s, color 0.3s; /* Smooth transitions for dark mode */
+}
+
+/* Container and Layout */
+.container {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    background: #fff;
+    border: 1px solid #e2e8f0; /* Subtle border for structure */
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background: #f9fafb; /* Slightly off-white for contrast */
+    padding: 15px;
+    border-right: 1px solid #e2e8f0;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 15px;
+}
+.sidebar.open {
+    display: flex;
+}
+.sidebar h2 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #4c0871; /* Purple accent for headers */
+}
+.sidebar p {
+    font-size: 0.9em;
+    color: #4c0871; /* Consistent purple for text */
+}
+.sidebar .stat {
+    font-size: 0.85em;
+    color: #6b7280; /* Muted gray for stats */
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: #4c0871; /* Deep purple from the button's origin */
+    color: #fff;
+    padding: 15px;
+    font-size: 1.3em;
+    font-weight: 600;
+    border-bottom: 1px solid #2f0f38; /* Darker purple for depth */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ask CareerBot Button (cta-button) */
+.cta-button {
+    background: #4c0871; /* Primary purple color */
+    color: #fff; /* White text for contrast */
+    padding: 10px 20px; /* Comfortable padding */
+    border: none;
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer;
+    font-size: 1em; /* Slightly larger for prominence */
+    font-weight: 500; /* Medium weight for balance */
+    text-decoration: none; /* Remove underline from <a> */
+    display: inline-block; /* Ensure proper alignment */
+    transition: background 0.2s ease; /* Smooth hover transition */
+}
+.cta-button:hover {
+    background: #2f0f38; /* Darker purple on hover, consistent with original design */
+}
+
+/* Chat Box */
+.chat-box {
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+.message {
+    margin: 15px 0;
+    padding: 5px 15px; /* Adjusted padding for better spacing */
+    border-radius: 5px;
+    max-width: 80%;
+    word-wrap: break-word;
+    line-height: 0.85; /* Improved readability */
+    border: 1px solid #e5e7eb;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+}
+.user {
+    background: #4c0871; /* Purple for user messages */
+    color: #fff;
+    margin-left: auto;
+    border-color: #2f0f38;
+}
+.ai {
+    background: #f1f5f9; /* Light gray for AI messages */
+    color: #2d3748;
+    margin-right: auto;
+    border-color: #d1d5db;
+}
+.timestamp {
+    display: block;
+    font-size: 0.7em;
+    color: #6b7280;
+    margin-top: 5px;
+}
+.typing {
+    background: #f1f5f9;
+    color: #6b7280;
+    font-style: italic;
+    border-color: #d1d5db;
+}
+
+/* Input Area */
+.input-area {
+    display: flex;
+    padding: 10px 20px;
+    background: #fff;
+    border-top: 1px solid #e2e8f0;
+}
+.input-area input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    outline: none;
+    font-size: 0.95em;
+    background: #fff;
+    transition: border-color 0.2s;
+}
+.input-area input:focus {
+    border-color: #4c0871; /* Purple focus state */
+}
+.input-area button, .toggle-btn, .sidebar-btn {
+    padding: 8px 15px;
+    margin-left: 10px;
+    background: #4c0871; /* Consistent purple theme */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9em;
+    transition: background 0.2s;
+}
+.input-area button:hover, .toggle-btn:hover, .sidebar-btn:hover {
+    background: #2f0f38; /* Darker purple on hover */
+}
+.clear-btn {
+    background: #b91c1c; /* Red for clear action */
+}
+.clear-btn:hover {
+    background: #991b1b;
+}
+.feature-btn {
+    background: #4b5563; /* Neutral gray for features */
+}
+.feature-btn:hover {
+    background: #374151;
+}
+.sidebar-btn {
+    margin-left: 0;
+}
+
+/* Dark Mode */
+.dark-mode body {
+    background: #1f2a44; /* Dark blue-gray background */
+}
+.dark-mode .container {
+    background: #283548;
+    color: #d1d5db;
+    border-color: #3f4e6b;
+}
+.dark-mode .header {
+    background: #2f0f38; /* Darker purple for header */
+    border-bottom-color: #1a0623;
+}
+.dark-mode .sidebar {
+    background: #2d3748;
+    border-right-color: #3f4e6b;
+}
+.dark-mode .sidebar h2 {
+    color: #ffffff; /* White for better visibility */
+}
+.dark-mode .sidebar p, .dark-mode .sidebar .stat {
+    color: #d1d5db; /* Light gray for text */
+}
+.dark-mode .input-area {
+    background: #1f2a44;
+    border-top-color: #3f4e6b;
+}
+.dark-mode .input-area input {
+    background: #334155;
+    color: #d1d5db;
+    border-color: #4b5563;
+}
+.dark-mode .input-area input:focus {
+    border-color: #2f0f38; /* Darker purple focus */
+}
+.dark-mode .input-area button, .dark-mode .toggle-btn, .dark-mode .sidebar-btn {
+    background: #2f0f38; /* Darker purple buttons */
+}
+.dark-mode .input-area button:hover, .dark-mode .toggle-btn:hover, .dark-mode .sidebar-btn:hover {
+    background: #1a0623; /* Even darker on hover */
+}
+.dark-mode .message.user {
+    border-color: #2f0f38;
+}
+.dark-mode .message.ai {
+    background: #374151;
+    color: #d1d5db;
+    border-color: #4b5563;
+}
+.dark-mode .timestamp {
+    color: #9ca3af;
+}
+.dark-mode .typing {
+    background: #374151;
+    color: #9ca3af;
+    border-color: #4b5563;
+}
+
+/* Responsive Design */
+@media (max-width: 800px) {
+    .sidebar.open {
+        width: 200px;
+    }
+    .chat-box {
+        padding: 15px;
+    }
+}
+@media (max-width: 600px) {
+    .sidebar.open {
+        width: 180px;
+    }
+    .input-area {
+        padding: 8px 15px;
+    }
+    .header {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+}

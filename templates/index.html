@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PathWayPro</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">Path<span>Way</span>Pro.com</div>
+        <nav>
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="#">About Us</a>
+            <a href="#" class="login">Sign In</a>
+            <a href="#" class="dashboard">My Dashboard</a>
+            <a href="{{ url_for('chat') }}"><button class="cta-button">Ask CareerBot</button></a>
+        </nav>
+        <button class="toggle-btn" onclick="toggleDarkMode()">Dark Mode</button>
+    </header>
+
+    <section class="hero">
+        <div class="content">
+            <h1>Career Counselling For Class 11 & 12 Students</h1>
+            <p>CareerGuide brings this program for all class 11 & 12 students to overcome a wide variety of confusions, issues and provide ultimate guidance to take them to their ultimate goal.</p>
+            <a href="{{ url_for('signup') }}"><button class="cta-button">Sign Up 📅</button></a>
+        </div>
+    </section>
+
+    <h2 class="heading">Checkout Exciting Careers</h2>
+    <div class="career-container">
+        <div class="career-box"><div class="icon">🏢</div><h3>Management</h3><p>(5 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">💻</div><h3>Engineering</h3><p>(8 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">💚</div><h3>Medicine</h3><p>(7 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">🎨</div><h3>Design & Graphics</h3><p>(5 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">👑</div><h3>Graduate</h3><p>(6 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">💰</div><h3>Finance & Accounts</h3><p>(5 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">✏️</div><h3>Education & Training</h3><p>(4 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">⚖️</div><h3>Civil Services</h3><p>(5 possible opportunities)</p></div>
+        <div class="career-box"><div class="icon">📺</div><h3>Media & Journalism</h3><p>(5 possible opportunities)</p></div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="logo.png" alt="">
+                <span class="brand-name">Path<strong>Way</strong>Pro.com</span>
+            </div>
+            <div class="footer-info">
+                <div class="footer-item"><span class="icon">📍</span><p>EM-4/1 Sector V, Bidhannagar, Kolkata</p></div>
+                <div class="footer-item"><span class="icon">✉️</span><p>@gmail.com</p></div>
+                <div class="footer-item"><span class="icon">📞</span><p>+91 90719 37504</p></div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span class="brand-highlight">PathWayPro</span> 2023 All Rights Reserved</p>
+        </div>
+    </footer>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            localStorage.setItem("darkMode", document.body.classList.contains("dark-mode"));
+        }
+
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
+</body>
+</html>
